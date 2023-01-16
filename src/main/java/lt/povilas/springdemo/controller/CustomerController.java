@@ -5,6 +5,7 @@ import lt.povilas.springdemo.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -27,5 +28,11 @@ public class CustomerController {
     @GetMapping(path = "/customer/all")
     public @ResponseBody List<Customer> getAllCustomers() {
         return customerService.getAllCustomers();
+    }
+
+    // http://localhost:8080/customermapping/customer/112
+    @GetMapping(path = "/customer/{id}")
+    public @ResponseBody Customer getCustomerById(@PathVariable int id) {
+        return customerService.getCustomerById(id);
     }
 }
