@@ -2,20 +2,16 @@ package lt.povilas.springdemo.bootstrap;
 
 import lt.povilas.springdemo.repository.CustomerRepository;
 import lt.povilas.springdemo.repository.ProductLinesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BootStrapData implements CommandLineRunner {
+    @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
     private ProductLinesRepository productLinesRepository;
-
-
-    public BootStrapData(CustomerRepository customerRepository, ProductLinesRepository productLinesRepository) {
-        this.customerRepository = customerRepository;
-        this.productLinesRepository = productLinesRepository;
-
-    }
 
     @Override
     public void run(String... args) throws Exception {
