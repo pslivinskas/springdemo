@@ -5,5 +5,10 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface ProductLinesRepository extends CrudRepository <ProductLines, String> {
+public interface ProductLinesRepository extends CrudRepository<ProductLines, String> {
+    Optional<ProductLines> findByProductLine(String productLineName);
+
+    Iterable<ProductLines> findByProductLineLike(String productLineName);
+
+
 }

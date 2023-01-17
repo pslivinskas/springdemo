@@ -6,10 +6,7 @@ import lt.povilas.springdemo.service.CustomerService;
 import lt.povilas.springdemo.service.ProductLineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,8 +26,16 @@ public class ProductLinesController {
         return productLineService.getAllProductLines();
     }
 
-    @GetMapping(path = "/productline/{id}")
-    public @ResponseBody ProductLines getProductLineById(@PathVariable String id) {
-        return productLineService.getProductLineById(id);
+
+    // http://localhost:8080/productlinemapping/productline/name/Ships
+    @GetMapping(path = "/productline/name/{name}")
+    public @ResponseBody ProductLines getProductLineByName(@PathVariable String name) {
+        return productLineService.getProductLineByName(name);
+    }
+
+    // http://localhost:8080/productlinemapping/productline/like/cars
+    @GetMapping(path = "/productline/like/{name}")
+    public @ResponseBody List<ProductLines> getMyProductLineByNameLike(@PathVariable String name) {
+        return productLineService.getProductLineByNameLike("%" + name + "%");
     }
 }

@@ -1,8 +1,6 @@
 package lt.povilas.springdemo.service;
 
-import lt.povilas.springdemo.repository.CustomerRepository;
 import lt.povilas.springdemo.repository.ProductLinesRepository;
-import lt.povilas.springdemo.repository.model.Customer;
 import lt.povilas.springdemo.repository.model.ProductLines;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +16,12 @@ public class ProductLineService {
         return (List<ProductLines>) productLinesRepository.findAll();
     }
 
-    public ProductLines getProductLineById(String productLinesId){
-        return (ProductLines) productLinesRepository.findById(productLinesId).get();
-
+    public ProductLines getProductLineByName(String productLineName) {
+        return productLinesRepository.findByProductLine(productLineName).get();
     }
 
+    public List<ProductLines> getProductLineByNameLike(String productLineName) {
+        return (List<ProductLines>) productLinesRepository.findByProductLineLike(productLineName);
+    }
 
 }
