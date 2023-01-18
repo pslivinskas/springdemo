@@ -62,4 +62,5 @@ public class CustomerController {
     public @ResponseBody Customer getMyCustomerByIdWithRequestParam(@RequestParam int customerNumber) {
         return customerService.getMyCustomerById(customerNumber);
     }
-}
+
+  }

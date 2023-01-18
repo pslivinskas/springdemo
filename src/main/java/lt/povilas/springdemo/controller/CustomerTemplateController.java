@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/customertemplate")
 public class CustomerTemplateController {
@@ -34,5 +36,13 @@ public class CustomerTemplateController {
         model.addAttribute("country", customer.getCountry());
 
         return "/test/firstpage";
+    }
+
+    // http://localhost:8080/customertemplate/firstpage/customer/all
+    @GetMapping(path = "/firstpage/customer/all")
+    public String getAllCustomers(Model model) {
+        List<Customer> customersList = customerService.getAllCustomers();
+        model.addAttribute("key_customers_list", customersList);
+        return "/test/firstpage_customers_list";
     }
 }
