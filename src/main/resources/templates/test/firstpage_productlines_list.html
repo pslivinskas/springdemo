@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Product Lines list</title>
+    </head>
+    <body>
+    <table id="productLineDataTable" class="table">
+        <tr>
+
+            <th class="th">ProductLine</th>
+            <th class="th">Text Description</th>
+            <th class="th">Html Description</th>
+
+        </tr>
+        <tr th:each="productLine : ${key_productLine_list}">
+
+            <td class="td" th:text="${productLine.productLine}"></td>
+            <td class="td" th:text="${productLine.textDescription}"></td>
+            <td class="td" th:text="${productLine.htmlDescription}"></td>
+
+        </tr>
+    </table>
+    </body>
+</html>
