@@ -23,7 +23,7 @@
         <th class="th">Country</th>
         <th class="th">Credit Limit</th>
     </tr>
-    <tr th:each="customer : ${listas}">
+    <tr th:each="customer : ${key_customers_list}">
         <td class="td" th:text="${customerStat.index+1}"></td>
         <td class="td" th:text="${customer.customerNumber}"></td>
         <td class="td" th:text="${customer.customerName}"></td>

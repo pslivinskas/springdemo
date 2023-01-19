@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -46,13 +47,42 @@ public class CustomerTemplateController {
         return "/test/firstpage_customers_list";
     }
 
+    /***
+     *jQuery set up
+     ***/
+
+    // http://localhost:8080/customertemplate/customers/jquery
+    @GetMapping(path = "/customers/jquery")
+    public String getJqueryPage() {
+        return "/test/jquerypage";
+    }
+
+    // http://localhost:8080/customertemplate/customers/like/a
+    @GetMapping(path = "/customers/like/{name}")
+    public @ResponseBody List<Customer> getMyCustomerByNameLike(@PathVariable String name) {
+        return customerService.getMyCustomerByNameLike("%" + name + "%");
+    }
+
+    /***
+     *HTML CSS Styles implementation
+     ***/
+
+
     // http://localhost:8080/customertemplate/customer/112
     @GetMapping(path = "/customer/{id}")
-    public String getCustomer(Model model, @PathVariable int id){
+    public String getCustomer(Model model, @PathVariable int id) {
 
         Customer customer = customerService.getMyCustomerById(id);
         model.addAttribute("key_customer", customer);
 
         return "/customer/customer_th";
+    }
+
+    // http://localhost:8080/customertemplate/customers/all
+    @GetMapping(path = "/customers/all")
+    public String getAllCustomersWithNewTemplate(Model model) {
+        List<Customer> customersList = customerService.getAllCustomers();
+        model.addAttribute("key_customers_list", customersList);
+        return "/customer/customers_th";
     }
 }
